@@ -5,7 +5,6 @@ import { logtoConfig } from 'shared/config/logto';
 
 export const withLogto = (App: FC) => {
   const WithProvider = (props: Record<string, unknown>) => {
-    const MemoApp = useMemo(() => App, []);
 
     return (
       <LogtoProvider config={logtoConfig}>
