@@ -9,7 +9,7 @@ export const withLogto = (App: FC) => {
 
     return (
       <LogtoProvider config={logtoConfig}>
-        <MemoApp {...props} />
+        <App {...props} />
       </LogtoProvider>
     );
   };
