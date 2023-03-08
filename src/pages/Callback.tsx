@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useHandleSignInCallback } from '@logto/react';
 
-export const Callback = () => {
+const Callback = () => {
   const navigate = useNavigate();
   const { isLoading } = useHandleSignInCallback(() => {
     navigate('/', { replace: true });
@@ -15,3 +15,5 @@ export const Callback = () => {
 
   return <div>Callback</div>;
 };
+
+export default Callback;
