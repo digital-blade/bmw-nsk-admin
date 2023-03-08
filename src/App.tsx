@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+import { useLogto } from '@logto/react';
 
 import './App.css';
 import reactLogo from './assets/react.svg';
 
-function App() {
+export const RootApp = () => {
   const [count, setCount] = useState(0);
+
+  const { signIn, isAuthenticated } = useLogto();
+
+  if (!isAuthenticated) {
+    signIn('http://localhost:5173/callback');
+  }
 
   return (
     <div className="App">
@@ -26,6 +34,4 @@ function App() {
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </div>
   );
-}
-
-export default App;
+};
