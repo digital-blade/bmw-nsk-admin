@@ -5,7 +5,7 @@ import { useLogto } from '@logto/react';
 import './App.css';
 import reactLogo from './assets/react.svg';
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://admin.test.bmw-nsk.ru' : 'http://localhost:5173';
+const BASE_URL = import.meta.env.PROD ? 'https://admin.test.bmw-nsk.ru' : 'http://localhost:5173';
 export const RootApp = () => {
   const [count, setCount] = useState(0);
 
