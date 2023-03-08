@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 
 import { useLogto } from '@logto/react';
+import { logtoConfig } from 'shared/config/logto';
 
 import './App.css';
-import reactLogo from './assets/react.svg';
+import reactLogo from 'shared/assets/react.svg';
 
-const BASE_URL = import.meta.env.PROD ? 'https://admin.test.bmw-nsk.ru' : 'http://localhost:5173';
-export const RootApp = () => {
+const Index = () => {
   const [count, setCount] = useState(0);
 
-  const { signIn, isAuthenticated, signOut } = useLogto();
+  const { signIn, isAuthenticated, isLoading, signOut } = useLogto();
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
 
   if (!isAuthenticated) {
-    signIn(`${BASE_URL}/callback`);
+    signIn(`${logtoConfig.baseUrl}/callback`);
   }
 
   return (
@@ -28,7 +32,7 @@ export const RootApp = () => {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <button onClick={() => signOut(BASE_URL)}>sign out</button>
+        <button onClick={() => signOut()}>sign out</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -37,3 +41,5 @@ export const RootApp = () => {
     </div>
   );
 };
+
+export default Index;
